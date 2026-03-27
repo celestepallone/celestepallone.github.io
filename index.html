@@ -117,6 +117,22 @@
 
     .contact-sep { color: var(--rule); }
     
+.headshot {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-top: 2rem;
+      margin-bottom: 1.5rem;
+      border: 3px solid var(--rule);
+    }
+
+    @media (max-width: 640px) {
+      .headshot {
+        width: 150px;
+        height: 150px;
+      }
+    }
     .bio-text {
       font-size: 0.95rem;
       color: var(--ink-muted);
@@ -417,6 +433,7 @@
         <span class="contact-sep">·</span>
         <a href="CV.pdf" target="_blank">CV</a>
       </div>
+      <img src="Headshot.jpeg" alt="Dr. Celeste T. Pallone" class="headshot">
       <p class="bio-text">
         I use proxy records derived from marine sediments to characterize gradual, cyclical, and abrupt changes in the Earth's climate and ocean systems throughout the Cenozoic. I earned a BA in <a href="https://envsci.barnard.edu/" target="_blank">Environmental Science</a> from Barnard College in 2019 and a Ph.D. in <a href="https://eesc.columbia.edu/" target="_blank">Earth and Environmental Sciences</a> from Columbia University in 2025, advised by <a href="https://eesc.columbia.edu/content/jerry-f-mcmanus" target="_blank">Jerry McManus</a>. I am currently a postdoc in the <a href="https://www.mcgeelab.mit.edu/" target="_blank">McGee Lab for Paleoclimate and Geochronology</a> at MIT.
       </p>
