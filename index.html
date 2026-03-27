@@ -303,12 +303,16 @@
       display: block;
     }
 
+.slide {
+      position: relative;
+    }
+
     .prev, .next {
       cursor: pointer;
       position: absolute;
       top: 50%;
+      transform: translateY(-50%);
       width: auto;
-      margin-top: -22px;
       padding: 16px;
       color: white;
       font-weight: bold;
@@ -317,6 +321,11 @@
       border-radius: 0 3px 3px 0;
       user-select: none;
       background-color: rgba(0,0,0,0.5);
+      z-index: 10;
+    }
+
+    .prev {
+      left: 0;
     }
 
     .next {
@@ -326,6 +335,13 @@
 
     .prev:hover, .next:hover {
       background-color: rgba(0,0,0,0.8);
+    }
+
+    @media (max-width: 640px) {
+      .prev, .next {
+        padding: 12px;
+        font-size: 18px;
+      }
     }
 
     .slide-counter {
