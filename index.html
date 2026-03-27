@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Celeste Pallone</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #ffffff;
+      --ink: #1a1a1a;
+      --ink-muted: #555555;
+      --ink-faint: #999999;
+      --accent: #2a5c45;
+      --rule: #e0e0e0;
+      --font: Arial, Helvetica, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      background: var(--bg);
+      border-bottom: 1px solid var(--rule);
+      z-index: 100;
+      padding: 0 2rem;
+    }
+
+    nav .inner {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 54px;
+    }
+
+    nav .name {
+      font-size: 0.95rem;
+      font-weight: bold;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    nav ul { list-style: none; display: flex; gap: 2rem; }
+
+    nav ul a {
+      font-size: 0.82rem;
+      color: var(--ink-muted);
+      text-decoration: none;
+    }
+
+    nav ul a:hover { color: var(--accent); }
+
+    main {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    section {
+      padding: 4.5rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    section:last-child { border-bottom: none; }
+
+    .section-title {
+      font-size: 0.72rem;
+      font-weight: bold;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 2rem;
+    }
+
+    #about { padding-top: 5rem; }
+
+    .hero-name {
+      font-size: 2.4rem;
+      font-weight: bold;
+      line-height: 1.15;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-subtitle {
+      font-size: 0.85rem;
+      color: var(--ink-muted);
+      line-height: 1.8;
+      margin-bottom: 2rem;
+      max-width: 640px;
+    }
+
+    .contact-row { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; }
+
+    .contact-row a {
+      font-size: 0.82rem;
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      padding-bottom: 1px;
+    }
+
+    .contact-row a:hover { border-color: var(--accent); }
+
+    .contact-sep { color: var(--rule); }
+
+    .research-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 640px) {
+      .research-grid { grid-template-columns: 1fr; }
+      nav ul { gap: 1rem; }
+      .hero-name { font-size: 1.8rem; }
+    }
+
+    @media (max-width: 800px) and (min-width: 641px) {
+      .research-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    .research-card {
+      border: 1px solid var(--rule);
+      padding: 1.4rem 1.4rem 1.6rem;
+      background: #fafafa;
+    }
+
+    .research-num {
+      font-size: 0.68rem;
+      font-weight: bold;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .research-card h3 {
+      font-size: 0.92rem;
+      font-weight: bold;
+      line-height: 1.45;
+      color: var(--ink);
+    }
+
+    .pub-list { display: flex; flex-direction: column; gap: 2rem; }
+
+    .pub-item {
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 0 1rem;
+    }
+
+    .pub-year {
+      font-size: 0.75rem;
+      color: var(--ink-faint);
+      font-weight: bold;
+      padding-top: 0.2rem;
+    }
+
+    .pub-title {
+      font-size: 0.95rem;
+      font-weight: bold;
+      margin-bottom: 0.2rem;
+      line-height: 1.45;
+    }
+
+    .pub-authors {
+      font-size: 0.85rem;
+      color: var(--ink-muted);
+      margin-bottom: 0.15rem;
+    }
+
+    .pub-journal {
+      font-size: 0.8rem;
+      color: var(--ink-faint);
+      font-style: italic;
+      margin-bottom: 0.15rem;
+    }
+
+    .pub-doi {
+      font-size: 0.8rem;
+      color: var(--accent);
+      text-decoration: none;
+      word-break: break-all;
+    }
+
+    .pub-doi:hover { text-decoration: underline; }
+
+    .contact-block {
+      font-size: 0.95rem;
+      color: var(--ink-muted);
+      line-height: 2;
+    }
+
+    .contact-block strong {
+      color: var(--ink);
+      display: block;
+      font-size: 1rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .contact-block a { color: var(--accent); text-decoration: none; }
+    .contact-block a:hover { text-decoration: underline; }
+
+    footer {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem 2rem;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    footer p { font-size: 0.72rem; color: var(--ink-faint); }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="inner">
+      <a class="name" href="#about">Celeste Pallone</a>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+
+    <section id="about">
+      <p class="section-title">About</p>
+      <h1 class="hero-name">Celeste Pallone</h1>
+      <p class="hero-subtitle">
+        Paleoceanographer &amp; Isotope Geochemist &nbsp;|&nbsp; Postdoctoral Associate &nbsp;|&nbsp;
+        Dept. of Earth, Atmospheric and Planetary Sciences &nbsp;|&nbsp; MIT
+      </p>
+      <div class="contact-row">
+        <a href="https://scholar.google.com/citations?user=W-8qcmUAAAAJ&hl=en" target="_blank">Google Scholar</a>
+        <span class="contact-sep">·</span>
+        <a href="https://orcid.org/0000-0002-3149-4280" target="_blank">ORCID</a>
+        <span class="contact-sep">·</span>
+        <a href="CV.pdf" target="_blank">CV</a>
+      </div>
+    </section>
+
+    <section id="research">
+      <p class="section-title">Research</p>
+      <div class="research-grid">
+        <div class="research-card">
+          <p class="research-num">01</p>
+          <h3>Pleistocene Tropical Pacific Paleoceanography</h3>
+        </div>
+        <div class="research-card">
+          <p class="research-num">02</p>
+          <h3>IODP Expedition 397: Iberian Margin Paleoclimate</h3>
+        </div>
+        <div class="research-card">
+          <p class="research-num">03</p>
+          <h3>Eocene Hyperthermal Events</h3>
+        </div>
+      </div>
+    </section>
+
+    <section id="publications">
+      <p class="section-title">Publications</p>
+      <div class="pub-list">
+
+        <div class="pub-item">
+          <span class="pub-year">2026</span>
+          <div>
+            <p class="pub-title">Onset of millennial climate variability with the intensification of Northern Hemisphere glaciation</p>
+            <p class="pub-authors">Hodell, D.A., Abrantes, F., Alvarez Zarikian, C.A., Herbert, T.D., Du, M., Crowhurst, S.J., et al.</p>
+            <p class="pub-journal">Science</p>
+            <a class="pub-doi" href="https://www.science.org/doi/10.1126/science.ady7970" target="_blank">https://doi.org/10.1126/science.ady7970</a>
+          </div>
+        </div>
+
+        <div class="pub-item">
+          <span class="pub-year">2026</span>
+          <div>
+            <p class="pub-title">Orbital forcing of the eastern equatorial Pacific thermocline in the late Pleistocene</p>
+            <p class="pub-authors">Pallone, C.T., Holmes, K., Morris, C.A., and McManus, J.F.</p>
+            <p class="pub-journal">Quaternary Science Reviews</p>
+            <a class="pub-doi" href="https://doi.org/10.1016/j.quascirev.2025.109734" target="_blank">https://doi.org/10.1016/j.quascirev.2025.109734</a>
+          </div>
+        </div>
+
+        <div class="pub-item">
+          <span class="pub-year">2025</span>
+          <div>
+            <p class="pub-title">Abrupt weakening of deep Atlantic circulation at the last glacial inception</p>
+            <p class="pub-authors">Zhou, Y., McManus, J.F., Pallone, C.T., Kenna, T.C., Weinstein, G.A., and Garcia, H.</p>
+            <p class="pub-journal">Nature Communications</p>
+            <a class="pub-doi" href="https://doi.org/10.1038/s41467-025-62960-y" target="_blank">https://doi.org/10.1038/s41467-025-62960-y</a>
+          </div>
+        </div>
+
+        <div class="pub-item">
+          <span class="pub-year">2025</span>
+          <div>
+            <p class="pub-title">Orbital influences on deep ocean oxygen concentrations and respired carbon storage</p>
+            <p class="pub-authors">Jacobel, A.W., Pallone, C.T., Costa, K.M., Anderson, R.F., and McManus, J.F.</p>
+            <p class="pub-journal">Global Biogeochemical Cycles</p>
+            <a class="pub-doi" href="https://doi.org/10.1029/2025GB008503" target="_blank">https://doi.org/10.1029/2025GB008503</a>
+          </div>
+        </div>
+
+        <div class="pub-item">
+          <span class="pub-year">2025</span>
+          <div>
+            <p class="pub-title">Eastern equatorial Pacific paleo-productivity and carbon cycling during the late Pleistocene</p>
+            <p class="pub-authors">Pallone, C.T., McManus, J.F., and Jacobel, A.W.</p>
+            <p class="pub-journal">Earth and Planetary Science Letters, 656, 119255</p>
+            <a class="pub-doi" href="https://doi.org/10.1016/j.epsl.2025.119255" target="_blank">https://doi.org/10.1016/j.epsl.2025.119255</a>
+          </div>
+        </div>
+
+        <div class="pub-item">
+          <span class="pub-year">2025</span>
+          <div>
+            <p class="pub-title">The FUTURE of the US marine seafloor and subseafloor sampling capabilities</p>
+            <p class="pub-authors">FUTURE 2024 PI-team, Appelgate, B., Dugan, B., Eguchi, N., Fornari, D., et al.</p>
+            <p class="pub-journal">AGU Advances</p>
+            <a class="pub-doi" href="https://doi.org/10.1029/2024av001560" target="_blank">https://doi.org/10.1029/2024av001560</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="contact">
+      <p class="section-title">Contact</p>
+      <div class="contact-block">
+        <strong>Celeste T. Pallone</strong>
+        Massachusetts Institute of Technology<br>
+        77 Massachusetts Avenue<br>
+        Cambridge, MA 02139<br><br>
+        Email: <a href="mailto:cpallone@mit.edu">cpallone@mit.edu</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Celeste T. Pallone &nbsp;·&nbsp; MIT EAPS</p>
+    <p>Updated 2026</p>
+  </footer>
+
+</body>
+</html>
