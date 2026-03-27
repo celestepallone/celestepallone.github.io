@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Celeste Pallone</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌊</text></svg>" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -84,6 +85,7 @@
       margin-bottom: 2rem;
     }
 
+    /* ABOUT */
     #about { padding-top: 5rem; }
 
     .hero-name {
@@ -98,7 +100,7 @@
       color: var(--ink-muted);
       line-height: 1.8;
       margin-bottom: 2rem;
-      max-width: 640px;
+      max-width: 680px;
     }
 
     .contact-row { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; }
@@ -115,8 +117,8 @@
 
     .contact-sep { color: var(--rule); }
 
-    /* RESEARCH */
-    .research-grid {
+    /* RESEARCH & PHOTOS GRIDS */
+    .card-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1.5rem;
@@ -124,16 +126,16 @@
     }
 
     @media (max-width: 640px) {
-      .research-grid { grid-template-columns: 1fr; }
-      nav ul { gap: 1rem; }
+      .card-grid { grid-template-columns: 1fr; }
+      nav ul { gap: 0.8rem; }
       .hero-name { font-size: 1.4rem; }
     }
 
     @media (max-width: 800px) and (min-width: 641px) {
-      .research-grid { grid-template-columns: 1fr 1fr; }
+      .card-grid { grid-template-columns: 1fr 1fr; }
     }
 
-    .research-card {
+    .clickable-card {
       border: 1px solid var(--rule);
       padding: 1.4rem 1.4rem 1.6rem;
       background: #fafafa;
@@ -142,24 +144,24 @@
       user-select: none;
     }
 
-    .research-card:hover {
+    .clickable-card:hover {
       border-color: var(--accent);
       background: #f0f5f2;
     }
 
-    .research-card.active {
+    .clickable-card.active {
       border-color: var(--accent);
       background: #f0f5f2;
     }
 
-    .research-card h3 {
+    .clickable-card h3 {
       font-size: 0.92rem;
       font-weight: bold;
       line-height: 1.45;
       color: var(--ink);
     }
 
-    .research-detail {
+    .expandable-detail {
       display: none;
       border: 1px solid var(--rule);
       border-top: 3px solid var(--accent);
@@ -170,9 +172,9 @@
       line-height: 1.75;
     }
 
-    .research-detail.visible { display: block; }
+    .expandable-detail.visible { display: block; }
 
-    .research-detail-title {
+    .expandable-detail-title {
       font-size: 0.95rem;
       font-weight: bold;
       color: var(--ink);
@@ -220,15 +222,35 @@
       color: var(--accent);
       text-decoration: none;
       word-break: break-all;
+      display: block;
+      margin-bottom: 0.2rem;
     }
 
     .pub-doi:hover { text-decoration: underline; }
+
+    .pub-extra-links {
+      display: flex;
+      gap: 1rem;
+      font-size: 0.8rem;
+      margin-top: 0.1rem;
+    }
+
+    .pub-extra-links a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .pub-extra-links a:hover { text-decoration: underline; }
+
+    .pub-extra-links .link-sep {
+      color: var(--rule);
+    }
 
     /* CONTACT */
     .contact-block {
       font-size: 0.95rem;
       color: var(--ink-muted);
-      line-height: 2;
+      line-height: 1.9;
     }
 
     .contact-block strong {
@@ -259,8 +281,10 @@
     <div class="inner">
       <a class="name" href="#about">Celeste Pallone</a>
       <ul>
+        <li><a href="#about">About</a></li>
         <li><a href="#research">Research Areas</a></li>
         <li><a href="#publications">Publications</a></li>
+        <li><a href="#photos">Photos</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </div>
@@ -268,17 +292,19 @@
 
   <main>
 
-    <!-- ABOUT — no section label -->
+    <!-- ABOUT -->
     <section id="about">
       <h1 class="hero-name">Dr. Celeste T. Pallone</h1>
       <p class="hero-subtitle">
         Paleoceanographer &amp; Isotope Geochemist &nbsp;|&nbsp; Postdoctoral Associate &nbsp;|&nbsp;
-        Dept. of Earth, Atmospheric and Planetary Sciences &nbsp;|&nbsp; MIT
+        Department of Earth, Atmospheric &amp; Planetary Sciences &nbsp;|&nbsp; Massachusetts Institute of Technology
       </p>
       <div class="contact-row">
         <a href="https://scholar.google.com/citations?user=W-8qcmUAAAAJ&hl=en" target="_blank">Google Scholar</a>
         <span class="contact-sep">·</span>
         <a href="https://orcid.org/0000-0002-3149-4280" target="_blank">ORCID</a>
+        <span class="contact-sep">·</span>
+        <a href="https://bsky.app/profile/cpallone.bsky.social" target="_blank">Bluesky</a>
         <span class="contact-sep">·</span>
         <a href="CV.pdf" target="_blank">CV</a>
       </div>
@@ -287,28 +313,27 @@
     <!-- RESEARCH AREAS -->
     <section id="research">
       <p class="section-title">Research Areas</p>
-      <div class="research-grid">
-        <div class="research-card" onclick="toggleResearch(1)">
+      <div class="card-grid">
+        <div class="clickable-card" onclick="toggleDetail('research', 1)">
           <h3>Pleistocene Tropical Pacific Paleoceanography</h3>
         </div>
-        <div class="research-card" onclick="toggleResearch(2)">
-          <h3>IODP Expedition 397: Iberian Margin Paleoclimate</h3>
+        <div class="clickable-card" onclick="toggleDetail('research', 2)">
+          <h3>International Ocean Discovery Program (IODP) Expedition 397: Iberian Margin Paleoclimate</h3>
         </div>
-        <div class="research-card" onclick="toggleResearch(3)">
+        <div class="clickable-card" onclick="toggleDetail('research', 3)">
           <h3>Eocene Hyperthermal Events</h3>
         </div>
       </div>
-
-      <div class="research-detail" id="research-detail-1">
-        <p class="research-detail-title">Pleistocene Tropical Pacific Paleoceanography</p>
+      <div class="expandable-detail" id="research-detail-1">
+        <p class="expandable-detail-title">Pleistocene Tropical Pacific Paleoceanography</p>
         <p>Sample text 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
       </div>
-      <div class="research-detail" id="research-detail-2">
-        <p class="research-detail-title">IODP Expedition 397: Iberian Margin Paleoclimate</p>
+      <div class="expandable-detail" id="research-detail-2">
+        <p class="expandable-detail-title">International Ocean Discovery Program (IODP) Expedition 397: Iberian Margin Paleoclimate</p>
         <p>Sample text 2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
       </div>
-      <div class="research-detail" id="research-detail-3">
-        <p class="research-detail-title">Eocene Hyperthermal Events</p>
+      <div class="expandable-detail" id="research-detail-3">
+        <p class="expandable-detail-title">Eocene Hyperthermal Events</p>
         <p>Sample text 3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
       </div>
     </section>
@@ -335,6 +360,11 @@
             <p class="pub-authors">Pallone, C.T., Holmes, K., Morris, C.A., and McManus, J.F.</p>
             <p class="pub-journal">Quaternary Science Reviews</p>
             <a class="pub-doi" href="https://doi.org/10.1016/j.quascirev.2025.109734" target="_blank">https://doi.org/10.1016/j.quascirev.2025.109734</a>
+            <div class="pub-extra-links">
+              <a href="https://github.com/ctpallone/Pallone-et-al.-QSR-2025" target="_blank">GitHub</a>
+              <span class="link-sep">|</span>
+              <a href="https://zenodo.org/search?q=Orbital+forcing+eastern+equatorial+Pacific+thermocline+Pleistocene+Pallone" target="_blank">Zenodo</a>
+            </div>
           </div>
         </div>
 
@@ -365,6 +395,9 @@
             <p class="pub-authors">Pallone, C.T., McManus, J.F., and Jacobel, A.W.</p>
             <p class="pub-journal">Earth and Planetary Science Letters, 656, 119255</p>
             <a class="pub-doi" href="https://doi.org/10.1016/j.epsl.2025.119255" target="_blank">https://doi.org/10.1016/j.epsl.2025.119255</a>
+            <div class="pub-extra-links">
+              <a href="https://zenodo.org/search?q=Eastern+equatorial+Pacific+paleo-productivity+carbon+cycling+late+Pleistocene+Pallone" target="_blank">Zenodo</a>
+            </div>
           </div>
         </div>
 
@@ -378,6 +411,44 @@
           </div>
         </div>
 
+        <div class="pub-item">
+          <span class="pub-year">2024</span>
+          <div>
+            <p class="pub-title">Volume 397 Iberian Margin Paleoclimate</p>
+            <p class="pub-authors">Hodell, D.A., Abrantes, F., Alvarez Zarikian, C.A., and the Expedition 397 Scientists</p>
+            <p class="pub-journal">Proceedings of the International Ocean Discovery Program</p>
+            <a class="pub-doi" href="https://doi.org/10.14379/iodp.proc.397.2024" target="_blank">https://doi.org/10.14379/iodp.proc.397.2024</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PHOTOS -->
+    <section id="photos">
+      <p class="section-title">Photos</p>
+      <div class="card-grid">
+        <div class="clickable-card" onclick="toggleDetail('photos', 1)">
+          <h3>LDEO</h3>
+        </div>
+        <div class="clickable-card" onclick="toggleDetail('photos', 2)">
+          <h3>IODP</h3>
+        </div>
+        <div class="clickable-card" onclick="toggleDetail('photos', 3)">
+          <h3>MIT</h3>
+        </div>
+      </div>
+      <div class="expandable-detail" id="photos-detail-1">
+        <p class="expandable-detail-title">LDEO</p>
+        <p>Photos from Lamont-Doherty Earth Observatory.</p>
+      </div>
+      <div class="expandable-detail" id="photos-detail-2">
+        <p class="expandable-detail-title">IODP</p>
+        <p>Photos from IODP Expedition 397.</p>
+      </div>
+      <div class="expandable-detail" id="photos-detail-3">
+        <p class="expandable-detail-title">MIT</p>
+        <p>Photos from MIT.</p>
       </div>
     </section>
 
@@ -388,7 +459,7 @@
         <strong>Dr. Celeste T. Pallone</strong>
         Massachusetts Institute of Technology<br>
         77 Massachusetts Avenue<br>
-        Cambridge, MA 02139<br><br>
+        Cambridge, MA 02139<br>
         Email: <a href="mailto:cpallone@mit.edu">cpallone@mit.edu</a>
       </div>
     </section>
@@ -400,18 +471,16 @@
   </footer>
 
   <script>
-    function toggleResearch(n) {
-      const cards = document.querySelectorAll('.research-card');
-      const details = document.querySelectorAll('.research-detail');
-      const detail = document.getElementById('research-detail-' + n);
-      const card = cards[n - 1];
+    function toggleDetail(group, n) {
+      const allCards = document.querySelectorAll('#' + (group === 'research' ? 'research' : 'photos') + ' .clickable-card');
+      const allDetails = document.querySelectorAll('[id^="' + group + '-detail-"]');
+      const detail = document.getElementById(group + '-detail-' + n);
+      const card = allCards[n - 1];
       const isOpen = detail.classList.contains('visible');
 
-      // close all
-      details.forEach(d => d.classList.remove('visible'));
-      cards.forEach(c => c.classList.remove('active'));
+      allDetails.forEach(d => d.classList.remove('visible'));
+      allCards.forEach(c => c.classList.remove('active'));
 
-      // open clicked one if it was closed
       if (!isOpen) {
         detail.classList.add('visible');
         card.classList.add('active');
