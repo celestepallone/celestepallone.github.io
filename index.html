@@ -262,7 +262,64 @@
 
     .contact-block a { color: var(--accent); text-decoration: none; }
     .contact-block a:hover { text-decoration: underline; }
+    
+/* PHOTO SLIDESHOW */
+    .slideshow-container {
+      position: relative;
+      max-width: 800px;
+      margin: 2rem auto;
+      background: #000;
+    }
 
+    .slideshow-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .slide {
+      display: none;
+    }
+
+    .slide.active {
+      display: block;
+    }
+
+    .prev, .next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      width: auto;
+      margin-top: -22px;
+      padding: 16px;
+      color: white;
+      font-weight: bold;
+      font-size: 24px;
+      transition: 0.3s ease;
+      border-radius: 0 3px 3px 0;
+      user-select: none;
+      background-color: rgba(0,0,0,0.5);
+    }
+
+    .next {
+      right: 0;
+      border-radius: 3px 0 0 3px;
+    }
+
+    .prev:hover, .next:hover {
+      background-color: rgba(0,0,0,0.8);
+    }
+
+    .slide-counter {
+      color: #f2f2f2;
+      font-size: 14px;
+      padding: 8px 12px;
+      position: absolute;
+      top: 0;
+      right: 0;
+      background-color: rgba(0,0,0,0.5);
+    }
+    
     /* FOOTER */
     footer {
       max-width: 800px;
@@ -438,18 +495,56 @@
           <h3>MIT</h3>
         </div>
       </div>
+
+      
       <div class="expandable-detail" id="photos-detail-1">
         <p class="expandable-detail-title">LDEO</p>
-        <p>Photos from Lamont-Doherty Earth Observatory.</p>
+        <div class="slideshow-container">
+          <div class="slide active">
+            <div class="slide-counter">1 / 4</div>
+            <img src="LDEO 1.jpeg" alt="LDEO Photo 1">
+          </div>
+          <div class="slide">
+            <div class="slide-counter">2 / 4</div>
+            <img src="LDEO 2.jpeg" alt="LDEO Photo 2">
+          </div>
+          <div class="slide">
+            <div class="slide-counter">3 / 4</div>
+            <img src="LDEO 3.jpeg" alt="LDEO Photo 3">
+          </div>
+          <div class="slide">
+            <div class="slide-counter">4 / 4</div>
+            <img src="LDEO 4.jpeg" alt="LDEO Photo 4">
+          </div>
+          <a class="prev" onclick="changeSlide(-1, 'photos-detail-1')">❮</a>
+          <a class="next" onclick="changeSlide(1, 'photos-detail-1')">❯</a>
+        </div>
       </div>
+      
       <div class="expandable-detail" id="photos-detail-2">
         <p class="expandable-detail-title">IODP</p>
-        <p>Photos from IODP Expedition 397.</p>
+        <div class="slideshow-container">
+          <div class="slide active">
+            <div class="slide-counter">1 / 1</div>
+            <img src="IODP 1.jpeg" alt="IODP Photo 1">
+          </div>
+          <a class="prev" onclick="changeSlide(-1, 'photos-detail-2')">❮</a>
+          <a class="next" onclick="changeSlide(1, 'photos-detail-2')">❯</a>
+        </div>
       </div>
+      
       <div class="expandable-detail" id="photos-detail-3">
         <p class="expandable-detail-title">MIT</p>
-        <p>Photos from MIT.</p>
+        <div class="slideshow-container">
+          <div class="slide active">
+            <div class="slide-counter">1 / 1</div>
+            <img src="MIT 1.jpeg" alt="MIT Photo 1">
+          </div>
+          <a class="prev" onclick="changeSlide(-1, 'photos-detail-3')">❮</a>
+          <a class="next" onclick="changeSlide(1, 'photos-detail-3')">❯</a>
+        </div>
       </div>
+      
     </section>
 
     <!-- CONTACT -->
@@ -470,7 +565,7 @@
     <p>Updated 2026</p>
   </footer>
 
-  <script>
+<script>
     function toggleDetail(group, n) {
       const allCards = document.querySelectorAll('#' + (group === 'research' ? 'research' : 'photos') + ' .clickable-card');
       const allDetails = document.querySelectorAll('[id^="' + group + '-detail-"]');
@@ -485,6 +580,30 @@
         detail.classList.add('visible');
         card.classList.add('active');
       }
+    }
+
+    function changeSlide(direction, containerId) {
+      const container = document.getElementById(containerId);
+      const slides = container.querySelectorAll('.slide');
+      let currentIndex = 0;
+      
+      // Find current slide
+      slides.forEach((slide, index) => {
+        if (slide.classList.contains('active')) {
+          currentIndex = index;
+        }
+      });
+      
+      // Remove active class from current slide
+      slides[currentIndex].classList.remove('active');
+      
+      // Calculate new index
+      let newIndex = currentIndex + direction;
+      if (newIndex >= slides.length) newIndex = 0;
+      if (newIndex < 0) newIndex = slides.length - 1;
+      
+      // Add active class to new slide
+      slides[newIndex].classList.add('active');
     }
   </script>
 
