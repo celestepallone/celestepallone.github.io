@@ -87,14 +87,14 @@
     #about { padding-top: 5rem; }
 
     .hero-name {
-      font-size: 2.4rem;
+      font-size: 1.8rem;
       font-weight: bold;
       line-height: 1.15;
       margin-bottom: 0.75rem;
     }
 
     .hero-subtitle {
-      font-size: 0.85rem;
+      font-size: 1rem;
       color: var(--ink-muted);
       line-height: 1.8;
       margin-bottom: 2rem;
@@ -104,7 +104,7 @@
     .contact-row { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; }
 
     .contact-row a {
-      font-size: 0.82rem;
+      font-size: 1rem;
       color: var(--accent);
       text-decoration: none;
       border-bottom: 1px solid transparent;
@@ -115,16 +115,18 @@
 
     .contact-sep { color: var(--rule); }
 
+    /* RESEARCH */
     .research-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1.5rem;
+      margin-bottom: 2rem;
     }
 
     @media (max-width: 640px) {
       .research-grid { grid-template-columns: 1fr; }
       nav ul { gap: 1rem; }
-      .hero-name { font-size: 1.8rem; }
+      .hero-name { font-size: 1.4rem; }
     }
 
     @media (max-width: 800px) and (min-width: 641px) {
@@ -135,15 +137,19 @@
       border: 1px solid var(--rule);
       padding: 1.4rem 1.4rem 1.6rem;
       background: #fafafa;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      user-select: none;
     }
 
-    .research-num {
-      font-size: 0.68rem;
-      font-weight: bold;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 0.5rem;
+    .research-card:hover {
+      border-color: var(--accent);
+      background: #f0f5f2;
+    }
+
+    .research-card.active {
+      border-color: var(--accent);
+      background: #f0f5f2;
     }
 
     .research-card h3 {
@@ -153,6 +159,27 @@
       color: var(--ink);
     }
 
+    .research-detail {
+      display: none;
+      border: 1px solid var(--rule);
+      border-top: 3px solid var(--accent);
+      padding: 1.5rem;
+      background: #fafafa;
+      font-size: 0.95rem;
+      color: var(--ink-muted);
+      line-height: 1.75;
+    }
+
+    .research-detail.visible { display: block; }
+
+    .research-detail-title {
+      font-size: 0.95rem;
+      font-weight: bold;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+
+    /* PUBLICATIONS */
     .pub-list { display: flex; flex-direction: column; gap: 2rem; }
 
     .pub-item {
@@ -197,6 +224,7 @@
 
     .pub-doi:hover { text-decoration: underline; }
 
+    /* CONTACT */
     .contact-block {
       font-size: 0.95rem;
       color: var(--ink-muted);
@@ -213,12 +241,13 @@
     .contact-block a { color: var(--accent); text-decoration: none; }
     .contact-block a:hover { text-decoration: underline; }
 
+    /* FOOTER */
     footer {
       max-width: 800px;
       margin: 0 auto;
       padding: 2rem 2rem;
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-end;
     }
 
     footer p { font-size: 0.72rem; color: var(--ink-faint); }
@@ -230,8 +259,7 @@
     <div class="inner">
       <a class="name" href="#about">Celeste Pallone</a>
       <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#research">Research</a></li>
+        <li><a href="#research">Research Areas</a></li>
         <li><a href="#publications">Publications</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -240,9 +268,9 @@
 
   <main>
 
+    <!-- ABOUT — no section label -->
     <section id="about">
-      <p class="section-title">About</p>
-      <h1 class="hero-name">Celeste Pallone</h1>
+      <h1 class="hero-name">Dr. Celeste T. Pallone</h1>
       <p class="hero-subtitle">
         Paleoceanographer &amp; Isotope Geochemist &nbsp;|&nbsp; Postdoctoral Associate &nbsp;|&nbsp;
         Dept. of Earth, Atmospheric and Planetary Sciences &nbsp;|&nbsp; MIT
@@ -256,24 +284,36 @@
       </div>
     </section>
 
+    <!-- RESEARCH AREAS -->
     <section id="research">
-      <p class="section-title">Research</p>
+      <p class="section-title">Research Areas</p>
       <div class="research-grid">
-        <div class="research-card">
-          <p class="research-num">01</p>
+        <div class="research-card" onclick="toggleResearch(1)">
           <h3>Pleistocene Tropical Pacific Paleoceanography</h3>
         </div>
-        <div class="research-card">
-          <p class="research-num">02</p>
+        <div class="research-card" onclick="toggleResearch(2)">
           <h3>IODP Expedition 397: Iberian Margin Paleoclimate</h3>
         </div>
-        <div class="research-card">
-          <p class="research-num">03</p>
+        <div class="research-card" onclick="toggleResearch(3)">
           <h3>Eocene Hyperthermal Events</h3>
         </div>
       </div>
+
+      <div class="research-detail" id="research-detail-1">
+        <p class="research-detail-title">Pleistocene Tropical Pacific Paleoceanography</p>
+        <p>Sample text 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </div>
+      <div class="research-detail" id="research-detail-2">
+        <p class="research-detail-title">IODP Expedition 397: Iberian Margin Paleoclimate</p>
+        <p>Sample text 2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </div>
+      <div class="research-detail" id="research-detail-3">
+        <p class="research-detail-title">Eocene Hyperthermal Events</p>
+        <p>Sample text 3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </div>
     </section>
 
+    <!-- PUBLICATIONS -->
     <section id="publications">
       <p class="section-title">Publications</p>
       <div class="pub-list">
@@ -341,10 +381,11 @@
       </div>
     </section>
 
+    <!-- CONTACT -->
     <section id="contact">
       <p class="section-title">Contact</p>
       <div class="contact-block">
-        <strong>Celeste T. Pallone</strong>
+        <strong>Dr. Celeste T. Pallone</strong>
         Massachusetts Institute of Technology<br>
         77 Massachusetts Avenue<br>
         Cambridge, MA 02139<br><br>
@@ -355,9 +396,28 @@
   </main>
 
   <footer>
-    <p>Celeste T. Pallone &nbsp;·&nbsp; MIT EAPS</p>
     <p>Updated 2026</p>
   </footer>
+
+  <script>
+    function toggleResearch(n) {
+      const cards = document.querySelectorAll('.research-card');
+      const details = document.querySelectorAll('.research-detail');
+      const detail = document.getElementById('research-detail-' + n);
+      const card = cards[n - 1];
+      const isOpen = detail.classList.contains('visible');
+
+      // close all
+      details.forEach(d => d.classList.remove('visible'));
+      cards.forEach(c => c.classList.remove('active'));
+
+      // open clicked one if it was closed
+      if (!isOpen) {
+        detail.classList.add('visible');
+        card.classList.add('active');
+      }
+    }
+  </script>
 
 </body>
 </html>
