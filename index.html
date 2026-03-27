@@ -266,15 +266,33 @@
 /* PHOTO SLIDESHOW */
     .slideshow-container {
       position: relative;
-      max-width: 800px;
+      max-width: 90vw;
+      max-height: 80vh;
       margin: 2rem auto;
       background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .slideshow-container img {
-      width: 100%;
+      max-width: 100%;
+      max-height: 80vh;
+      width: auto;
       height: auto;
       display: block;
+      object-fit: contain;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 640px) {
+      .slideshow-container {
+        max-height: 70vh;
+      }
+      
+      .slideshow-container img {
+        max-height: 70vh;
+      }
     }
 
     .slide {
