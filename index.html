@@ -215,6 +215,57 @@
       margin-bottom: 0.5rem;
     }
 
+    /* RESEARCH LIST: each card opens directly beneath itself */
+    .research-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .research-item .clickable-card.active + .expandable-detail {
+      border-color: var(--accent);
+      border-top: none;
+    }
+
+    /* RESEARCH DROPDOWNS */
+    .expandable-detail .research-sub {
+      border-top: 1px solid var(--rule);
+      margin-top: 1rem;
+    }
+
+    .expandable-detail .research-sub + .research-sub { margin-top: 0; }
+
+    .research-sub summary {
+      cursor: pointer;
+      padding: 0.7rem 0;
+      font-size: 0.9rem;
+      font-weight: bold;
+      color: var(--ink);
+    }
+
+    .research-sub summary:hover { color: var(--accent); }
+
+    .research-sub ul {
+      list-style: none;
+      padding-bottom: 0.5rem;
+    }
+
+    .research-sub li {
+      font-size: 0.85rem;
+      line-height: 1.6;
+      margin-bottom: 0.8rem;
+      word-break: break-word;
+    }
+
+    .research-sub a { color: var(--accent); text-decoration: none; }
+    .research-sub a:hover { text-decoration: underline; }
+
+    .research-sub .mentee-note {
+      font-size: 0.78rem;
+      color: var(--ink-faint);
+      padding-bottom: 0.8rem;
+    }
+
     /* PUBLICATIONS */
     .pub-list { display: flex; flex-direction: column; gap: 2rem; }
 
@@ -279,6 +330,12 @@
     .pub-extra-links .link-sep {
       color: var(--rule);
     }
+
+    /* OUTREACH */
+    .outreach-list { display: flex; flex-direction: column; gap: 1.5rem; }
+
+    .outreach-item .pub-title a { color: var(--ink); text-decoration: none; }
+    .outreach-item .pub-title a:hover { color: var(--accent); text-decoration: underline; }
 
     /* CONTACT */
     .contact-block {
@@ -409,6 +466,7 @@
         <li><a href="#about">About</a></li>
         <li><a href="#research">Research</a></li>
         <li><a href="#publications">Publications</a></li>
+        <li><a href="#outreach">Outreach &amp; Media</a></li>
         <li><a href="#photos">Photos</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -444,28 +502,78 @@
     <!-- RESEARCH -->
     <section id="research">
       <p class="section-title">Research</p>
-      <div class="card-grid">
-        <div class="clickable-card" onclick="toggleDetail('research', 1)">
-          <h3>Pleistocene Tropical Pacific Paleoceanography</h3>
+      <div class="research-list">
+        <div class="research-item">
+          <div class="clickable-card" onclick="toggleDetail('research', 1)">
+            <h3>Pleistocene Tropical Pacific Paleoceanography</h3>
+          </div>
+          <div class="expandable-detail" id="research-detail-1">
+        <p>The tropical Pacific is the dominant source of sub-decadal climate variability today, but how ocean-atmosphere dynamics in the eastern equatorial Pacific (EEP) may change with future climate is still uncertain. Paleoceanographic records are historically complicated by spatial heterogeneity and proxy biases, resulting in longstanding debates on productivity dynamics and the region’s role in global carbon cycling. My Ph.D. was a multi-proxy study of key elements of the tropical Pacific ocean-atmosphere system over the last glacial and interglacial periods, including EEP thermocline depth, carbon cycling, and sea surface temperature variability.</p>
+        <details class="research-sub">
+          <summary>Related Publications</summary>
+          <ul>
+            <li><strong>Pallone, C.T.</strong>, Holmes, K.,* Morris, C.A.,* McManus, J.F. (2026). Orbital forcing of the eastern equatorial Pacific thermocline in the late Pleistocene. <em>Quaternary Science Reviews</em>, 373, 109734. <a href="https://doi.org/10.1016/j.quascirev.2025.109734" target="_blank">https://doi.org/10.1016/j.quascirev.2025.109734</a></li>
+            <li>Jacobel, A.W., <strong>Pallone, C.T.</strong>, Costa, K.M., Anderson, R.F., McManus, J.F. (2025). Orbital influences on deep ocean oxygen concentrations and respired carbon storage. <em>Global Biogeochemical Cycles</em>, 39, e2025GB008503. <a href="https://doi.org/10.1029/2025GB008503" target="_blank">https://doi.org/10.1029/2025GB008503</a></li>
+            <li><strong>Pallone, C.T.</strong>, McManus, J.F., Jacobel, A.W. (2025). Eastern equatorial Pacific paleo-productivity and carbon cycling during the late Pleistocene. <em>Earth and Planetary Science Letters</em>, 656, 119255. <a href="https://doi.org/10.1016/j.epsl.2025.119255" target="_blank">https://doi.org/10.1016/j.epsl.2025.119255</a></li>
+          </ul>
+          <p class="mentee-note">* Mentored student co-author</p>
+        </details>
+        <details class="research-sub">
+          <summary>Related Presentations</summary>
+          <ul>
+            <li><strong>Pallone, C.T.</strong>, Holmes, K., Morris, C.A., McManus, J.F. <a href="https://ui.adsabs.harvard.edu/abs/2024AGUFMPP53C0653P/abstract" target="_blank">Orbital forcing of the eastern equatorial Pacific thermocline in the late Pleistocene.</a> (Poster). 2024 AGU Fall Meeting.</li>
+            <li>Smith, S.,* McManus, J.F., <strong>Pallone, C.T.</strong> <a href="https://ui.adsabs.harvard.edu/abs/2023AGUFMPP51D1095S/abstract" target="_blank">Investigating past thermocline conditions in the eastern equatorial Pacific since the last glacial interval using oxygen isotope gradients from shallow- and deep-dwelling planktonic foraminifera.</a> (Poster). 2023 AGU Fall Meeting.</li>
+            <li>O’Keefe, A.,* <strong>Pallone, C.T.</strong>, McManus, J.F. <a href="https://ui.adsabs.harvard.edu/abs/2023AGUFMPP51D1092O/abstract" target="_blank">Reconstructing the thermocline in the eastern equatorial Pacific since the last glacial interval.</a> (Poster). 2023 AGU Fall Meeting.</li>
+            <li>Holmes, K.,* <strong>Pallone, C.T.</strong>, McManus, J.F. <a href="https://ui.adsabs.harvard.edu/abs/2021AGUFMPP15D0945H/abstract" target="_blank">Multispecies foraminifera reconstruction of the eastern equatorial Pacific thermocline during the Holocene and last glacial interval.</a> (Poster). 2021 AGU Fall Meeting.</li>
+            <li>Morris, C.,* <strong>Pallone, C.T.</strong>, McManus, J.F. <a href="https://ui.adsabs.harvard.edu/abs/2021AGUFMPP15D0939M/abstract" target="_blank">A foraminifera-derived reconstruction of the eastern equatorial Pacific thermocline between 70,000 and 150,000 years ago.</a> (Poster). 2021 AGU Fall Meeting.</li>
+          </ul>
+          <p class="mentee-note">* Mentored student co-author</p>
+        </details>
+          </div>
         </div>
-        <div class="clickable-card" onclick="toggleDetail('research', 2)">
-          <h3>International Ocean Discovery Program (IODP) Expedition 397: Iberian Margin Paleoclimate</h3>
+        <div class="research-item">
+          <div class="clickable-card" onclick="toggleDetail('research', 2)">
+            <h3>International Ocean Discovery Program (IODP) Expedition 397: Iberian Margin Paleoclimate</h3>
+          </div>
+          <div class="expandable-detail" id="research-detail-2">
+        <p>Deep-sea sediments from the Iberian Margin are unique paleoclimate archives, containing millennial-scale proxies of North Atlantic and Antarctic temperatures correlatable to high latitude ice cores and proxies that reflect the distribution and ventilation rates of deep-water masses. I was a sedimentologist on IODP Expedition 397 in 2022 and helped recover, characterize, and catalogue over 6 km of deep-sea sediments along a depth transect of four southwest Iberian Margin sites that were deposited across the Pleistocene, Pliocene, and Miocene. I am working with a team of students from Columbia University and collaborating with my Ph.D. advisor Dr. Jerry McManus to generate a benthic foraminifera stable isotope record across the last 1.5 Ma at Iberian Margin Site U1587 (3479 meters below sea level [mbsl]).</p>
+        <details class="research-sub">
+          <summary>Related Publications</summary>
+          <ul>
+            <li>Chen, X., et al. (including <strong>Pallone, C.T.</strong>) (2026). Tracking variability in atmospheric, oceanic, and riverine inputs to the Iberian Margin over the last 250 kyr. <em>Paleoceanography and Paleoclimatology</em>, 41, e2026PA005431. <a href="https://doi.org/10.1029/2026PA005431" target="_blank">https://doi.org/10.1029/2026PA005431</a></li>
+            <li>Hodell, D.A., et al. (including <strong>Pallone, C.T.</strong>) (2026). Onset of millennial climate variability with the intensification of Northern Hemisphere glaciation. <em>Science</em>, 392, 57–62. <a href="https://doi.org/10.1126/science.ady7970" target="_blank">https://doi.org/10.1126/science.ady7970</a></li>
+            <li>Hodell, D.A., Abrantes, F., Alvarez Zarikian, C.A., the Expedition 397 Scientists (2024). Iberian Margin Paleoclimate. <em>Proceedings of the International Ocean Discovery Program (IODP)</em>, 397. IODP. <a href="https://doi.org/10.14379/iodp.proc.397.2024" target="_blank">https://doi.org/10.14379/iodp.proc.397.2024</a></li>
+          </ul>
+        </details>
+        <details class="research-sub">
+          <summary>Related Presentations</summary>
+          <ul>
+            <li>McManus, J.F., <strong>Pallone, C.T.</strong>, Arellano, A., et al. <a href="https://meetingorganizer.copernicus.org/EGU26/EGU26-14053.html?pdf" target="_blank">Changes in deep circulation and carbon storage in the eastern North Atlantic Ocean across the Mid-Pleistocene Transition.</a> (Presenting Author, Talk). 2026 EGU General Assembly.</li>
+            <li><strong>Pallone, C.T.</strong>, McManus, J.F., Arellano, A., Matthews, M., Alonso García, M., Lasluisa Molina, E.R. <a href="https://ui.adsabs.harvard.edu/abs/2026AGUOSMCC43A.03P/abstract" target="_blank">A depth transect of North Atlantic deep-water masses at the Iberian Margin in the late Pleistocene.</a> (Talk). 2026 Ocean Sciences Meeting.</li>
+            <li>Matthews, M.,* McManus, J.F., <strong>Pallone, C.T.</strong> <a href="https://ui.adsabs.harvard.edu/abs/2024AGUFMPP41E0362M/abstract" target="_blank">Orbital- and millennial-scale deep-ocean circulation and climate variability during the Mid-Brunhes from isotopic proxy records at IODP Site U1587 on the Iberian Margin.</a> (Poster). 2024 AGU Fall Meeting.</li>
+            <li>Latting, H.,* McManus, J.F., <strong>Pallone, C.T.</strong>, Zhou, Y. <a href="https://ui.adsabs.harvard.edu/abs/2023AGUFMPP43F1736L/abstract" target="_blank">Deep ocean circulation in the west and east North Atlantic during the last glacial period and Holocene.</a> (Poster). 2023 AGU Fall Meeting.</li>
+            <li>Kim, E.,* McManus, J.F., <strong>Pallone, C.T.</strong> <a href="https://ui.adsabs.harvard.edu/abs/2023AGUFMOS41B1753K/abstract" target="_blank">North Atlantic deep water masses throughout the Mid-Pleistocene Transition: changes at Site U1587 on the Iberian Margin.</a> (Poster). 2023 AGU Fall Meeting.</li>
+          </ul>
+          <p class="mentee-note">* Mentored student co-author</p>
+        </details>
+          </div>
         </div>
-        <div class="clickable-card" onclick="toggleDetail('research', 3)">
-          <h3>Eocene Hyperthermal Events</h3>
+        <div class="research-item">
+          <div class="clickable-card" onclick="toggleDetail('research', 3)">
+            <h3>Eocene Hyperthermal Events</h3>
+          </div>
+          <div class="expandable-detail" id="research-detail-3">
+        <p>Rapid excursions from equilibrium climate states occurred throughout the Cenozoic, but the most relevant analogues for modern and future climate change may come from the hothouse climate of the early Eocene, in which global temperatures were warmer than the present, atmospheric CO<sub>2</sub> concentrations were higher, and global ice volume was minimal. My ongoing postdoctoral research focuses on early Eocene hyperthermal events, which were transient, less than 100 kyr warming events that occurred with a rapid addition of carbon to the ocean-atmosphere system. I am characterizing changes in ocean carbon cycling in the deep equatorial Atlantic across hyperthermals using redox-sensitive minor and trace elements in deep-sea sediments.</p>
+        <details class="research-sub">
+          <summary>Related Presentations</summary>
+          <ul>
+            <li>Duvvuri, R.,* <strong>Pallone, C.T.</strong>, McGee, D. <a href="https://studio.m-anage.com/agu/agu26/meetingapp.cgi/Paper/2091373" target="_blank">Comparing seafloor carbonate accumulation across two early Eocene hyperthermal events.</a> (Poster). 2026 AGU Fall Meeting.</li>
+            <li><strong>Pallone, C.T.</strong>, McGee, D., Kirtland-Turner, S. <a href="https://studio.m-anage.com/agu/agu25/meetingapp.cgi/Paper/1948945" target="_blank">Paleoredox reconstructions from the deep equatorial Atlantic Ocean across Eocene Thermal Maximum 3.</a> (Poster). 2025 AGU Fall Meeting.</li>
+          </ul>
+          <p class="mentee-note">* Mentored student co-author</p>
+        </details>
+          </div>
         </div>
-      </div>
-      <div class="expandable-detail" id="research-detail-1">
-        <p class="expandable-detail-title">Pleistocene Tropical Pacific Paleoceanography</p>
-        <p>Sample text 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-      </div>
-      <div class="expandable-detail" id="research-detail-2">
-        <p class="expandable-detail-title">International Ocean Discovery Program (IODP) Expedition 397: Iberian Margin Paleoclimate</p>
-        <p>Sample text 2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-      </div>
-      <div class="expandable-detail" id="research-detail-3">
-        <p class="expandable-detail-title">Eocene Hyperthermal Events</p>
-        <p>Sample text 3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
       </div>
     </section>
 
@@ -560,6 +668,34 @@
             <p class="pub-journal">Proceedings of the International Ocean Discovery Program</p>
             <a class="pub-doi" href="https://doi.org/10.14379/iodp.proc.397.2024" target="_blank">https://doi.org/10.14379/iodp.proc.397.2024</a>
           </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- OUTREACH -->
+    <section id="outreach">
+      <p class="section-title">Outreach &amp; Media</p>
+      <div class="outreach-list">
+
+        <div class="outreach-item">
+          <p class="pub-title"><a href="https://nepaleoclimate.com" target="_blank">1st New England Paleoclimate Workshop</a></p>
+          <p class="pub-authors">Co-Organizer</p>
+        </div>
+
+        <div class="outreach-item">
+          <p class="pub-title"><a href="https://archive.storycorps.org/interviews/the-camaraderie-that-we-had-on-the-ship-is-still-going-thats-a-really-special-thing-about-being-on-the-jr-and-being-a-part-of-iodp/" target="_blank">Tales from the Deep: Stories of Scientific Ocean Drilling</a></p>
+          <p class="pub-authors">Interview with Laura Guertin</p>
+        </div>
+
+        <div class="outreach-item">
+          <p class="pub-title"><a href="https://whyy.org/segments/drilling-for-earths-climate-secrets-buried-under-the-sea/" target="_blank">Drilling for Earth’s climate secrets buried under the sea</a></p>
+          <p class="pub-authors">Article by Amy Mayer</p>
+        </div>
+
+        <div class="outreach-item">
+          <p class="pub-title"><a href="https://www.youtube.com/watch?v=w3LjMvMYNso" target="_blank">Meet the Scientist with Geoknowledgy: Celeste Pallone/McManus Lab</a></p>
+          <p class="pub-authors">Short-form video by Daniel Babin</p>
         </div>
 
       </div>
