@@ -455,6 +455,39 @@
     }
 
     footer p { font-size: 0.72rem; color: var(--ink-faint); }
+
+    /* MOBILE MENU: on phones the links fold into a drop-down under a Menu button */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: 1px solid var(--rule);
+      font-family: var(--font);
+      font-size: 0.82rem;
+      color: var(--ink-muted);
+      padding: 0.35rem 0.8rem;
+      cursor: pointer;
+    }
+
+    .nav-toggle:hover, nav.open .nav-toggle { color: var(--accent); border-color: var(--accent); }
+
+    @media (max-width: 640px) {
+      nav { padding: 0 1.25rem; }
+      .nav-toggle { display: block; }
+      nav ul {
+        display: none;
+        position: absolute;
+        top: 54px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        gap: 0;
+        background: var(--bg);
+        border-bottom: 1px solid var(--rule);
+        padding: 0.4rem 1.25rem 0.8rem;
+      }
+      nav.open ul { display: flex; }
+      nav ul a { display: block; padding: 0.6rem 0; font-size: 0.95rem; }
+    }
   </style>
 </head>
 <body>
@@ -462,7 +495,8 @@
   <nav>
     <div class="inner">
       <a class="name" href="#about">Celeste Pallone</a>
-      <ul>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+      <ul id="nav-links">
         <li><a href="#about">About</a></li>
         <li><a href="#research">Research</a></li>
         <li><a href="#publications">Publications</a></li>
@@ -680,27 +714,32 @@
 
         <div class="outreach-item">
           <p class="pub-title"><a href="https://www.cam.ac.uk/research/news/flickering-glacial-climate-may-have-shaped-early-human-evolution" target="_blank">Flickering glacial climate may have shaped early human evolution</a></p>
-          <p class="pub-authors">Article from the University of Cambridge</p>
+          <p class="pub-authors">2026 Article from the University of Cambridge</p>
         </div>
 
         <div class="outreach-item">
           <p class="pub-title"><a href="https://nepaleoclimate.com" target="_blank">1st New England Paleoclimate Workshop</a></p>
-          <p class="pub-authors">Website</p>
+          <p class="pub-authors">2026 Workshop Early Career Organizer</p>
+        </div>
+
+        <div class="outreach-item">
+          <p class="pub-title"><a href="https://www.instagram.com/reel/DSa7hhZETkZ/" target="_blank">U.S. Scientific Ocean Drilling Highlight</a></p>
+          <p class="pub-authors">2025 Video from AGU Fall Meeting</p>
+        </div>
+
+        <div class="outreach-item">
+          <p class="pub-title"><a href="https://usoceandiscovery.org/wp-content/uploads/2024/09/20-SEPTEMBER-2024.pdf" target="_blank">U.S. Scientific Ocean Drilling Dispatch</a></p>
+          <p class="pub-authors">2024 Spotlight Article by Maya Pincus, pp. 8–11</p>
         </div>
 
         <div class="outreach-item">
           <p class="pub-title"><a href="https://archive.storycorps.org/interviews/the-camaraderie-that-we-had-on-the-ship-is-still-going-thats-a-really-special-thing-about-being-on-the-jr-and-being-a-part-of-iodp/" target="_blank">Tales from the Deep: Stories of Scientific Ocean Drilling</a></p>
-          <p class="pub-authors">Interview with Laura Guertin</p>
+          <p class="pub-authors">2023 Interview with Laura Guertin</p>
         </div>
 
         <div class="outreach-item">
           <p class="pub-title"><a href="https://whyy.org/segments/drilling-for-earths-climate-secrets-buried-under-the-sea/" target="_blank">Drilling for Earth’s climate secrets buried under the sea</a></p>
-          <p class="pub-authors">Article by Amy Mayer</p>
-        </div>
-
-        <div class="outreach-item">
-          <p class="pub-title"><a href="https://www.youtube.com/watch?v=w3LjMvMYNso" target="_blank">Meet the Scientist with Geoknowledgy: Celeste Pallone/McManus Lab</a></p>
-          <p class="pub-authors">Short-form video by Daniel Babin</p>
+          <p class="pub-authors">2023 Article by Amy Mayer</p>
         </div>
 
       </div>
@@ -860,5 +899,21 @@
     }
   </script>
 
+<script>
+  (function () {
+    var nav = document.querySelector('nav');
+    var btn = nav.querySelector('.nav-toggle');
+    btn.addEventListener('click', function () {
+      var open = nav.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open);
+    });
+    nav.querySelectorAll('ul a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        nav.classList.remove('open');
+        btn.setAttribute('aria-expanded', false);
+      });
+    });
+  })();
+</script>
 </body>
 </html>
